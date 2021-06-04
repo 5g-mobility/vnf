@@ -4,7 +4,7 @@ There are 2 NSs, one for the static services i.e, the services that will always 
 
 ## How to Run
 
-To run the system, [OSM client](https://osm.etsi.org/wikipub/index.php/OSM_client) must be installed and updated.
+To prepare the system, [OSM client](https://osm.etsi.org/wikipub/index.php/OSM_client) must be installed and updated and have a [VIM](https://osm.etsi.org/docs/user-guide/04-vim-setup.html) and [OSM](https://osm.etsi.org/) configured.
 
 That said, the steps are as follows:
 
