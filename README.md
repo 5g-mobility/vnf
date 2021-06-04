@@ -10,13 +10,13 @@ That said, the steps are as follows:
 
 1. If you do not have the _tar.gz_ of each NS and VNF configuration directory, you need to do the following
    
-     - For each NS and VNF configuration directory do the following
+     - For each NS and VNF configuration:
      
     ```
     $ tar -czvf <name_of_NS_or_VNF_configuration_directory>.tar.gz <name_of_NS_or_VNF_configuration_directory>/
     ```
 
-    This will create the a single file with the collection of configuration files wrapped up in it
+    This will create a single file with the collection of configuration files wrapped up in it
     
 2. Do the onboarding of each VNF. To do this, do the following for each _tar.gz_ of the VNFs configuration files:
    
