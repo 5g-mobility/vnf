@@ -13,7 +13,7 @@ vnfd:
     lcm-operations-configuration:
       operate-vnf-op-config:
         day1-2:
-        - id: static_5g_mobility-vnf
+        - id: static_5g_mobility-VM
           execution-environment-list:
           - id: sshproxy-ee
             juju:
@@ -33,6 +33,15 @@ vnfd:
           #   - data-type: STRING
           #     default-value: ""
           #     name: command
+          # - name: clone-github-repository
+          #   execution-environment-ref: sshproxy-ee
+          #   parameter:
+          #   - data-type: STRING
+          #     name: repository-url
+          #     default-value: ""
+          #   - data-type: STRING
+          #     name: app-name
+          #     default-value: ""
           # - name: update-repository
           #   execution-environment-ref: sshproxy-ee
           #   parameter:
@@ -63,7 +72,12 @@ vnfd:
           #   - data-type: STRING
           #     default-value: ""
           #     name: app-name
-          # id: static_5g_mobility-VM # TODO check if gives error with this param
+          # - name: remove-app
+          #   execution-environment-ref: sshproxy-ee
+          #   parameter:
+          #   - data-type: STRING
+          #     default-value: ""
+          #     name: app-name
           initial-config-primitive:
           - name: config
             execution-environment-ref: sshproxy-ee
