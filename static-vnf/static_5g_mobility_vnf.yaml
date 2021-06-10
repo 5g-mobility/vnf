@@ -27,14 +27,6 @@ vnfd:
             execution-environment-ref: sshproxy-ee
           - name: start
             execution-environment-ref: sshproxy-ee
-          - name: run
-            execution-environment-ref: sshproxy-ee
-            parameter:
-            - name: command
-              parameter:
-              - name: command
-                default-value: ""
-                data-type: STRING
           initial-config-primitive:
           - name: config
             execution-environment-ref: sshproxy-ee
