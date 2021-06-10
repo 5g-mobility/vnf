@@ -25,8 +25,8 @@ vnfd:
           config-primitive:
           - name: stop
             execution-environment-ref: sshproxy-ee
-          - name: start
-            execution-environment-ref: sshproxy-ee
+          # - name: start
+          #   execution-environment-ref: sshproxy-ee
           initial-config-primitive:
           - name: config
             execution-environment-ref: sshproxy-ee
@@ -36,7 +36,7 @@ vnfd:
             - name: ssh-username
               value: ubuntu
             - name: ssh-password
-              value: pi-5g-lei
+              value: "pi-5g-lei"
             seq: 1
           - name: start
             execution-environment-ref: sshproxy-ee
@@ -88,7 +88,7 @@ vnfd:
     virtual-cpu:
       num-virtual-cpu: "2"
     virtual-memory:
-      size: "8.0"
+      size: "4.0"
   virtual-storage-desc:
   - id: static_5g_mobility-VM-storage
     size-of-storage: "10"
