@@ -10,105 +10,105 @@ vnfd:
     vdu-profile:
     - id: static_5g_mobility-VM
       min-number-of-instances: 1
-  lcm-operations-configuration:
-    operate-vnf-op-config:
-      day1-2:
-      - id: static_5g_mobility-vnf
-        execution-environment-list:
-        - id: sshproxy-ee
-          juju:
-            charm: sshproxy
-        config-access:
-          ssh-access:
-            default-user: ubuntu
-            required: true
-        config-primitive:
-        - name: stop
-          execution-environment-ref: sshproxy-ee
-        - name: start
-          execution-environment-ref: sshproxy-ee
-        - name: run
-          execution-environment-ref: sshproxy-ee
-          parameter:
-          - data-type: STRING
-            default-value: ""
-            name: command
-        - name: clone-github-repository
-          execution-environment-ref: sshproxy-ee
-          parameter:
-          - data-type: STRING
-            name: repository-url
-            default-value: ""
-          - data-type: STRING
-            name: app-name
-            default-value: ""
-        - name: update-repository
-          execution-environment-ref: sshproxy-ee
-          parameter:
-          - data-type: STRING
-            default-value: ""
-            name: app-name
-        - name: delete-repository
-          execution-environment-ref: sshproxy-ee
-          parameter:
-          - data-type: STRING
-            default-value: ""
-            name: app-name
-        - name: run-app
-          execution-environment-ref: sshproxy-ee
-          parameter:
-          - data-type: STRING
-            default-value: ""
-            name: app-name
-        - name: stop-app
-          execution-environment-ref: sshproxy-ee
-          parameter:
-          - data-type: STRING
-            default-value: ""
-            name: app-name
-        - name: start-app
-          execution-environment-ref: sshproxy-ee
-          parameter:
-          - data-type: STRING
-            default-value: ""
-            name: app-name
-        - name: remove-app
-          execution-environment-ref: sshproxy-ee
-          parameter:
-          - data-type: STRING
-            default-value: ""
-            name: app-name
-        initial-config-primitive:
-        - name: config
-          execution-environment-ref: sshproxy-ee
-          parameter:
-          - name: ssh-hostname
-            value: <rw_mgmt_ip>
-          - name: ssh-username
-            value: ubuntu
-          - name: ssh-password
-            value: "pi-5g-lei"
-          seq: 1
-        - name: start
-          execution-environment-ref: sshproxy-ee
-          seq : 2
-        - name: clone-github-repository
-          execution-environment-ref: sshproxy-ee
-          parameter:
-          - data-type: STRING
-            name: repository-url
-            value: "https://github.com/5g-mobility/django-juju-demo.git"
-          - data-type: STRING
-            name: app-name
-            value: "django_app"
-          seq: 3
-        - name: run-app
-          execution-environment-ref: sshproxy-ee
-          parameter:
-          - data-type: STRING
-            name: app-name
-            value: "django_app"
-          seq: 4
+    lcm-operations-configuration:
+      operate-vnf-op-config:
+        day1-2:
+        - id: static_5g_mobility-vnf
+          execution-environment-list:
+          - id: sshproxy-ee
+            juju:
+              charm: sshproxy
+          config-access:
+            ssh-access:
+              default-user: ubuntu
+              required: true
+          config-primitive:
+          - name: stop
+            execution-environment-ref: sshproxy-ee
+          - name: start
+            execution-environment-ref: sshproxy-ee
+          - name: run
+            execution-environment-ref: sshproxy-ee
+            parameter:
+            - data-type: STRING
+              default-value: ""
+              name: command
+          - name: clone-github-repository
+            execution-environment-ref: sshproxy-ee
+            parameter:
+            - data-type: STRING
+              name: repository-url
+              default-value: ""
+            - data-type: STRING
+              name: app-name
+              default-value: ""
+          - name: update-repository
+            execution-environment-ref: sshproxy-ee
+            parameter:
+            - data-type: STRING
+              default-value: ""
+              name: app-name
+          - name: delete-repository
+            execution-environment-ref: sshproxy-ee
+            parameter:
+            - data-type: STRING
+              default-value: ""
+              name: app-name
+          - name: run-app
+            execution-environment-ref: sshproxy-ee
+            parameter:
+            - data-type: STRING
+              default-value: ""
+              name: app-name
+          - name: stop-app
+            execution-environment-ref: sshproxy-ee
+            parameter:
+            - data-type: STRING
+              default-value: ""
+              name: app-name
+          - name: start-app
+            execution-environment-ref: sshproxy-ee
+            parameter:
+            - data-type: STRING
+              default-value: ""
+              name: app-name
+          - name: remove-app
+            execution-environment-ref: sshproxy-ee
+            parameter:
+            - data-type: STRING
+              default-value: ""
+              name: app-name
+          initial-config-primitive:
+          - name: config
+            execution-environment-ref: sshproxy-ee
+            parameter:
+            - name: ssh-hostname
+              value: <rw_mgmt_ip>
+            - name: ssh-username
+              value: ubuntu
+            - name: ssh-password
+              value: "pi-5g-lei"
+            seq: 1
+          - name: start
+            execution-environment-ref: sshproxy-ee
+            seq : 2
+          - name: clone-github-repository
+            execution-environment-ref: sshproxy-ee
+            parameter:
+            - data-type: STRING
+              name: repository-url
+              value: "https://github.com/5g-mobility/django-juju-demo.git"
+            - data-type: STRING
+              name: app-name
+              value: "django_app"
+            seq: 3
+          - name: run-app
+            execution-environment-ref: sshproxy-ee
+            parameter:
+            - data-type: STRING
+              name: app-name
+              value: "django_app"
+            seq: 4
   ext-cpd:
   - id: vnf-cp0-ext
     int-cpd:
