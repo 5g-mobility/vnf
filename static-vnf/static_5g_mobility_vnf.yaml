@@ -25,8 +25,21 @@ vnfd:
           config-primitive:
           - name: stop
             execution-environment-ref: sshproxy-ee
-          # - name: start
-          #   execution-environment-ref: sshproxy-ee
+          - name: start
+            execution-environment-ref: sshproxy-ee
+          - name: run
+            execution-environment-ref: sshproxy-ee
+            parameter:
+            - data-type: STRING
+              default-value: ""
+              name: command
+          - name: update-repository
+            execution-environment-ref: sshproxy-ee
+            parameter:
+            - data-type: STRING
+              default-value: ""
+              name: app-name
+          id: static_5g_mobility-VM # TODO check if gives error with this param
           initial-config-primitive:
           - name: config
             execution-environment-ref: sshproxy-ee
