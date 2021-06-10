@@ -41,20 +41,21 @@ vnfd:
           - name: start
             execution-environment-ref: sshproxy-ee
             seq : 2
-          - name: clone-github-repository
-            execution-environment-ref: sshproxy-ee
-            parameter:
-            - name: repository-url
-              value: https://github.com/5g-mobility/django-juju-demo.git
-            - name: app-name
-              value: django_app
-            seq: 3
-          - name: run-app
-            execution-environment-ref: sshproxy-ee
-            parameter:
-            - name: app-name
-              value: django_app
-            seq: 4
+          # - name: clone-github-repository
+          #   execution-environment-ref: sshproxy-ee
+          #   parameter:
+          #   - data-type: STRING
+                # name: repository-url
+          #     value: https://github.com/5g-mobility/django-juju-demo.git
+          #   - name: app-name
+          #     value: django_app
+          #   seq: 3
+          # - name: run-app
+          #   execution-environment-ref: sshproxy-ee
+          #   parameter:
+          #   - name: app-name
+          #     value: django_app
+          #   seq: 4
   ext-cpd:
   - id: vnf-cp0-ext
     int-cpd:
