@@ -213,7 +213,6 @@ class SshproxyCharm(SSHProxyCharm):
 
             proxy.run("echo \"export {}='{}'\" >> ~/.bashrc".format(
                 event.params["var-name"], self.model.config["ssh-hostname"]))
-            proxy.run("source ~/.bashrc")
 
             self.unit.status = ActiveStatus("Ip of the machine exported with success")
         else:
@@ -227,9 +226,10 @@ class SshproxyCharm(SSHProxyCharm):
 
             self.unit.status = MaintenanceStatus("Modifying file")
 
-            proxy.run("sed -i \"s/{}/${}/g\" {}".format(
-                event.params["old"],
-                event.params["new"],
+            proxy.run("source ~/.bashrc && sed -i \"s/{}/{}/g\" {}".format(
+                event.params["replace-string"],
+                #self.model.config["ssh-hostname"],
+                "$EXTERNAL_IP"
                 event.params["file-path"]
             ))
 

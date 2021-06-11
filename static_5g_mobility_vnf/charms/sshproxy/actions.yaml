@@ -61,14 +61,10 @@ export-ip:
     - var-name
 
 sed-replace:
-  description: "Use sed command to replace file content."
+  description: "Use sed command to replace file content with ip of associated VM."
   params:
-    old:
-      description: "The old string."
-      type: string
-      default: ""
-    new:
-      description: "The new string."
+    replace-string:
+      description: "String to be replaced."
       type: string
       default: ""
     file-path:
@@ -76,8 +72,7 @@ sed-replace:
       type: string
       default: ""
   required:
-    - old
-    - new
+    - replace-string
     - file-path
 
 
