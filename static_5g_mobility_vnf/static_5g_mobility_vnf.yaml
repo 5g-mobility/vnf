@@ -90,13 +90,13 @@ vnfd:
               name: file-path
               value: "angular_app/src/environments/environment.prod.ts"
             seq: 7
-          # - name: run-app
-          #   execution-environment-ref: sshproxy-ee
-          #   parameter:
-          #   - data-type: STRING
-          #     name: app-name
-          #     value: "django_app"
-          #   seq: 8
+          - name: run-app
+            execution-environment-ref: sshproxy-ee
+            parameter:
+            - data-type: STRING
+              name: app-name
+              value: "django_app"
+            seq: 8
   ext-cpd:
   - id: vnf-cp0-ext
     int-cpd:
