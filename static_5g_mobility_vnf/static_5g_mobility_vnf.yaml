@@ -60,16 +60,16 @@ vnfd:
               name: app-name
               value: "django_app"
             seq: 4
-          # - name: clone-github-repository
-          #   execution-environment-ref: sshproxy-ee
-          #   parameter:
-          #   - data-type: STRING
-          #     name: repository-url
-          #     value: "https://github.com/5g-mobility/dashboard.git"
-          #   - data-type: STRING
-          #     name: app-name
-          #     value: "angular_app"
-          #   seq: 5
+          - name: clone-github-repository
+            execution-environment-ref: sshproxy-ee
+            parameter:
+            - data-type: STRING
+              name: repository-url
+              value: "https://github.com/5g-mobility/dashboard.git"
+            - data-type: STRING
+              name: app-name
+              value: "angular_app"
+            seq: 5
           # - name: clone-github-repository
           #   execution-environment-ref: sshproxy-ee
           #   parameter:
