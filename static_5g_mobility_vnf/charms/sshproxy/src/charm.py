@@ -226,9 +226,10 @@ class SshproxyCharm(SSHProxyCharm):
 
             self.unit.status = MaintenanceStatus("Modifying file")
 
-            proxy.run("sed -i \"s/{}/{}/g\" {}".format(
+            proxy.run("sed -i \"s/{}/{}/g\" {}{}".format(
                 event.params["replace-string"],
                 self.model.config["ssh-hostname"],
+                self.github_dir,
                 event.params["file-path"]
             ))
 
