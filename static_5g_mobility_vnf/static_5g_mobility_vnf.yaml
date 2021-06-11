@@ -13,7 +13,7 @@ vnfd:
     lcm-operations-configuration:
       operate-vnf-op-config:
         day1-2:
-        - id: static_5g_mobility-VM
+        - id: static_5g_mobility-vnf
           execution-environment-list:
           - id: sshproxy-ee
             juju:
@@ -87,12 +87,13 @@ vnfd:
     virtual-storage-desc:
     - static_5g_mobility-VM-storage
   version: '1.0'
+  # TODO change this specifications
   virtual-compute-desc:
   - id: static_5g_mobility-VM-compute
     virtual-cpu:
-      num-virtual-cpu: "4"
+      num-virtual-cpu: "2"
     virtual-memory:
-      size: "8.0"
+      size: "4.0"
   virtual-storage-desc:
   - id: static_5g_mobility-VM-storage
-    size-of-storage: "20"
+    size-of-storage: "10"
