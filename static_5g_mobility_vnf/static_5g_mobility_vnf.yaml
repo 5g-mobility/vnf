@@ -13,7 +13,7 @@ vnfd:
     lcm-operations-configuration:
       operate-vnf-op-config:
         day1-2:
-        - id: static_5g_mobility-vnf
+        - id: static_5g_mobility-VM
           execution-environment-list:
           - id: sshproxy-ee
             juju:
