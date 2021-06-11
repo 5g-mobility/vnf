@@ -220,16 +220,15 @@ class SshproxyCharm(SSHProxyCharm):
             return
 
     def on_sed_replace_action(self, event):
-        """ Replace the content of a spefici file using sed """
+        """ Replace the content of a speficic file using sed """
         if self.unit.is_leader():
             proxy = self.get_ssh_proxy()
 
             self.unit.status = MaintenanceStatus("Modifying file")
 
-            proxy.run("source ~/.bashrc && sed -i \"s/{}/{}/g\" {}".format(
+            proxy.run("sed -i \"s/{}/{}/g\" {}".format(
                 event.params["replace-string"],
-                #self.model.config["ssh-hostname"],
-                "$EXTERNAL_IP",
+                self.model.config["ssh-hostname"],
                 event.params["file-path"]
             ))
 
