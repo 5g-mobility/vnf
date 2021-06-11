@@ -80,16 +80,16 @@ vnfd:
               name: app-name
               value: "car_communication_app"
             seq: 6
-          # - name: sed-replace
-          #   execution-environment-ref: sshproxy-ee
-          #   parameter:
-          #   - data-type: STRING
-          #     name: replace-string
-          #     value: localhost
-          #   - data-type: STRING
-          #     name: file-path
-          #     value: "angular_app/src/environments/environment.prod.ts"
-          #   seq: 7
+          - name: sed-replace
+            execution-environment-ref: sshproxy-ee
+            parameter:
+            - data-type: STRING
+              name: replace-string
+              value: localhost
+            - data-type: STRING
+              name: file-path
+              value: "angular_app/src/environments/environment.prod.ts"
+            seq: 7
           # - name: run-app
           #   execution-environment-ref: sshproxy-ee
           #   parameter:
