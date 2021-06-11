@@ -80,13 +80,23 @@ vnfd:
               name: app-name
               value: "car_communication_app"
             seq: 6
+          - name: sed-replace
+            execution-environment-ref: sshproxy-ee
+            parameter:
+            - data-type: STRING
+              name:
+              value:
+            - data-type: STRING
+              name:
+              value:
+            seq: 7
           - name: run-app
             execution-environment-ref: sshproxy-ee
             parameter:
             - data-type: STRING
               name: app-name
               value: "django_app"
-            seq: 7
+            seq: 8
   ext-cpd:
   - id: vnf-cp0-ext
     int-cpd:

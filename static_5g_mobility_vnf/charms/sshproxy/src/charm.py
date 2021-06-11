@@ -229,7 +229,7 @@ class SshproxyCharm(SSHProxyCharm):
             proxy.run("source ~/.bashrc && sed -i \"s/{}/{}/g\" {}".format(
                 event.params["replace-string"],
                 #self.model.config["ssh-hostname"],
-                "$EXTERNAL_IP"
+                "$EXTERNAL_IP",
                 event.params["file-path"]
             ))
 
