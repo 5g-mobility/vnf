@@ -50,6 +50,37 @@ get-ssh-public-key:
 
 
 # Personalized actions
+export-ip:
+  description: "Put ip of the machine as environment variable."
+  params:
+    var-name:
+      description: "The name of the environment variable."
+      type: string
+      default: ""
+  required:
+    - var-name
+
+sed-replace:
+  description: "Use sed command to replace file content."
+  params:
+    old:
+      description: "The old string."
+      type: string
+      default: ""
+    new:
+      description: "The new string."
+      type: string
+      default: ""
+    file-path:
+      description: "Path to file."
+      type: string
+      default: ""
+  required:
+    - old
+    - new
+    - file-path
+
+
 clone-github-repository:
   description: "Clone a specific github repository to the VNF."
   params:

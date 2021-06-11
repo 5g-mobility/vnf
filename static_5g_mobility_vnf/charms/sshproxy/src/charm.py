@@ -43,6 +43,8 @@ class SshproxyCharm(SSHProxyCharm):
         self.framework.observe(self.on.upgrade_action, self.on_upgrade_action)
 
         # Personalized actions
+        self.framework.observe(self.on.export_ip_action, self.on_export_ip_action)
+        self.framework.observe(self.on.sed_replace_action, self.on_sed_replace_action)
         self.framework.observe(self.on.clone_github_repository_action,
                                         self.on_clone_github_repository_action)
         self.framework.observe(
@@ -202,6 +204,40 @@ class SshproxyCharm(SSHProxyCharm):
     ########################
     # Personalized methods #
     ########################
+    def on_export_ip_action(self, event):
+        """ Export environment variable with the ip of the machine associated """
+        if self.unit.is_leader():
+            proxy = self.get_ssh_proxy()
+
+            self.unit.status = MaintenanceStatus("Exporting the ip of the machine")
+
+            proxy.run("echo \"export {}='{}'\" >> ~/.bashrc".format(
+                event.params["var-name"], self.model.config["ssh-hostname"]))
+            proxy.run("source ~/.bashrc")
+
+            self.unit.status = ActiveStatus("Ip of the machine exported with success")
+        else:
+            event.fail("Unit is not leader")
+            return
+
+    def on_sed_replace_action(self, event):
+        """ Replace the content of a spefici file using sed """
+        if self.unit.is_leader():
+            proxy = self.get_ssh_proxy()
+
+            self.unit.status = MaintenanceStatus("Modifying file")
+
+            proxy.run("sed -i \"s/{}/${}/g\" {}".format(
+                event.params["old"],
+                event.params["new"],
+                event.params["file-path"]
+            ))
+
+            self.unit.status = ActiveStatus("File modified with success")
+        else:
+            event.fail("Unit is not leader")
+            return
+
     def on_clone_github_repository_action(self, event):
         """ Clone github repository to the VNF service on the VM """
         if self.unit.is_leader():

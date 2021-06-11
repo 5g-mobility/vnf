@@ -13,7 +13,7 @@ vnfd:
     lcm-operations-configuration:
       operate-vnf-op-config:
         day1-2:
-        - id: static_5g_mobility-VM
+        - id: static_5g_mobility-vnf
           execution-environment-list:
           - id: sshproxy-ee
             juju:
@@ -43,6 +43,13 @@ vnfd:
           - name: start
             execution-environment-ref: sshproxy-ee
             seq : 2
+          - name: export-ip
+            execution-environment-ref: sshproxy-ee
+            parameter:
+            - data-type: STRING
+              name: var-name
+              value: EXTERNAL_IP
+            seq : 3
           - name: clone-github-repository
             execution-environment-ref: sshproxy-ee
             parameter:
