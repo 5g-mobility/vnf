@@ -50,46 +50,46 @@ vnfd:
               name: var-name
               value: EXTERNAL_IP
             seq : 3
-          - name: clone-github-repository
-            execution-environment-ref: sshproxy-ee
-            parameter:
-            - data-type: STRING
-              name: repository-url
-              value: "https://github.com/5g-mobility/rest_api.git"
-            - data-type: STRING
-              name: app-name
-              value: "django_app"
-            seq: 4
-          - name: clone-github-repository
-            execution-environment-ref: sshproxy-ee
-            parameter:
-            - data-type: STRING
-              name: repository-url
-              value: "https://github.com/5g-mobility/dashboard.git"
-            - data-type: STRING
-              name: app-name
-              value: "angular_app"
-            seq: 5
-          - name: clone-github-repository
-            execution-environment-ref: sshproxy-ee
-            parameter:
-            - data-type: STRING
-              name: repository-url
-              value: "https://github.com/5g-mobility/car-communication.git"
-            - data-type: STRING
-              name: app-name
-              value: "car_communication_app"
-            seq: 6
-          - name: sed-replace
-            execution-environment-ref: sshproxy-ee
-            parameter:
-            - data-type: STRING
-              name: replace-string
-              value: localhost
-            - data-type: STRING
-              name: file-path
-              value: "angular_app/src/environments/environment.prod.ts"
-            seq: 7
+          # - name: clone-github-repository
+          #   execution-environment-ref: sshproxy-ee
+          #   parameter:
+          #   - data-type: STRING
+          #     name: repository-url
+          #     value: "https://github.com/5g-mobility/rest_api.git"
+          #   - data-type: STRING
+          #     name: app-name
+          #     value: "django_app"
+          #   seq: 4
+          # - name: clone-github-repository
+          #   execution-environment-ref: sshproxy-ee
+          #   parameter:
+          #   - data-type: STRING
+          #     name: repository-url
+          #     value: "https://github.com/5g-mobility/dashboard.git"
+          #   - data-type: STRING
+          #     name: app-name
+          #     value: "angular_app"
+          #   seq: 5
+          # - name: clone-github-repository
+          #   execution-environment-ref: sshproxy-ee
+          #   parameter:
+          #   - data-type: STRING
+          #     name: repository-url
+          #     value: "https://github.com/5g-mobility/car-communication.git"
+          #   - data-type: STRING
+          #     name: app-name
+          #     value: "car_communication_app"
+          #   seq: 6
+          # - name: sed-replace
+          #   execution-environment-ref: sshproxy-ee
+          #   parameter:
+          #   - data-type: STRING
+          #     name: replace-string
+          #     value: localhost
+          #   - data-type: STRING
+          #     name: file-path
+          #     value: "angular_app/src/environments/environment.prod.ts"
+          #   seq: 7
           # - name: run-app
           #   execution-environment-ref: sshproxy-ee
           #   parameter:
