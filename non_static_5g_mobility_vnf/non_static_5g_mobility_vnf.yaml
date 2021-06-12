@@ -10,6 +10,43 @@ vnfd:
     vdu-profile:
     - id: non_static_5g_mobility-VM
       min-number-of-instances: 1
+    lcm-operations-configuration:
+      operate-vnf-op-config:
+        day1-2:
+        - id: static_5g_mobility-vnf
+          execution-environment-list:
+          - id: sshproxy-ee
+            juju:
+              charm: sshproxy
+          config-access:
+            ssh-access:
+              default-user: ubuntu
+              required: true
+          config-primitive:
+          - name: run
+            execution-environment-ref: sshproxy-ee
+            parameter:
+            - data-type: STRING
+              default-value: ""
+              name: command
+          initial-config-primitive:
+          - name: config
+            execution-environment-ref: sshproxy-ee
+            parameter:
+            - name: ssh-hostname
+              value: <rw_mgmt_ip>
+            - name: ssh-username
+              value: ubuntu
+            - name: ssh-password
+              value: "pi-5g-lei"
+            seq: 1
+          # para o vnfd que vai criar a imagem
+          # exportar o ip da outra máquina
+          # fazer clone dos repos
+
+          # para este vnfd
+          # começar os serviços das câmeras
+          
   ext-cpd:
   - id: vnf-cp0-ext
     int-cpd:
