@@ -82,7 +82,7 @@ vnfd:
   - id: non_static_5g_mobility-VM-compute
     virtual-cpu:
     # TODO change this NEED MORE POWER
-      num-virtual-cpu: "2"
+      num-virtual-cpu: "4"
     virtual-memory:
       size: "4.0"
   virtual-storage-desc:
