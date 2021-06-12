@@ -33,9 +33,9 @@ vnfd:
             - name: ssh-password
               value: "pi-5g-lei"
             seq: 1
-          - name: ip-static-vm
-            execution-environment-ref: sshproxy-ee
-            seq: 2
+          # - name: ip-static-vm
+          #   execution-environment-ref: sshproxy-ee
+          #   seq: 2
           # começar os serviços das câmeras
           
   ext-cpd:
