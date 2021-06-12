@@ -46,6 +46,7 @@ vnfd:
               name: app-name
               value: "cv_app"
             seq: 3
+            # fazer a build dos containers
   ext-cpd:
   - id: vnf-cp0-ext
     int-cpd:

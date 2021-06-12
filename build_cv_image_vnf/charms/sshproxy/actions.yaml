@@ -95,6 +95,16 @@ run-app:
   required:
     - app-name
 
+build-app:
+  description: "Build a application."
+  params:
+    app-name:
+      description: "The name of the application."
+      type: string
+      default: ""
+  required:
+    - app-name
+
 stop-app:
   description: "Stop a specific application."
   params:
