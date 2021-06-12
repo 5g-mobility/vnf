@@ -131,6 +131,12 @@ class SshproxyCharm(SSHProxyCharm):
 
             # add directory where the github repository code will be placed
             proxy.run("mkdir {}".format(self.github_dir))
+
+            # install osm client
+            proxy.run("sudo sed -i \"/osm-download.etsi.org/d\" /etc/apt/sources.list")
+            proxy.run("sudo add-apt-repository -y \"deb [arch=amd64] https://osm-download.etsi.org/repository/osm/debian/ReleaseEIGHT-daily testing osmclient\"")
+            proxy.run("sudo apt-get update")
+            proxy.run("sudo apt-get install -y python3-osmclient")
             
             self.unit.status = ActiveStatus("All required packages installed successfully")
         else:

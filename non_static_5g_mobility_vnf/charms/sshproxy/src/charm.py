@@ -42,7 +42,8 @@ class SshproxyCharm(SSHProxyCharm):
         self.framework.observe(self.on.reboot_action, self.on_reboot_action)
         self.framework.observe(self.on.upgrade_action, self.on_upgrade_action)
 
-        # Personalized actions
+        # Personalized actions ip-static-vm
+        self.framework.observe(self.on.ip_static_vm_action, self.on_ip_static_vm_action)
         self.framework.observe(self.on.clone_github_repository_action,
                                         self.on_clone_github_repository_action)
         self.framework.observe(
@@ -202,6 +203,20 @@ class SshproxyCharm(SSHProxyCharm):
     ########################
     # Personalized methods #
     ########################
+    def on_ip_static_vm_action(self, event):
+        """ Run a script in the VM to retrieve the ip of the static VM running the static VNF service """
+        if self.unit.is_leader():
+            proxy = self.get_ssh_proxy()
+
+            self.unit.status = MaintenanceStatus("Getting the ip address")
+
+            proxy.run("python3 {}cv_app/ip_static_vm.py")
+
+            self.unit.status = ActiveStatus("The ip address was exported successfully")
+        else:
+            event.fail("Unit is not leader")
+            return
+
     def on_clone_github_repository_action(self, event):
         """ Clone github repository to the VNF service on the VM """
         if self.unit.is_leader():

@@ -50,6 +50,9 @@ get-ssh-public-key:
 
 
 # Personalized actions
+ip-static-vm:
+  description: "Get the ip of the static VM, that is running the static service."
+
 clone-github-repository:
   description: "Clone a specific github repository to the VNF."
   params:

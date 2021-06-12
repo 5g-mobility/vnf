@@ -33,22 +33,9 @@ vnfd:
             - name: ssh-password
               value: "pi-5g-lei"
             seq: 1
-          - name: start
+          - name: ip-static-vm
             execution-environment-ref: sshproxy-ee
-            seq : 2
-          - name: clone-github-repository
-            execution-environment-ref: sshproxy-ee
-            parameter:
-            - data-type: STRING
-              name: repository-url
-              value: "https://github.com/5g-mobility/computer-vision.git"
-            - data-type: STRING
-              name: app-name
-              value: "cv_app"
-            seq: 3
-
-          # para a outra vnfd
-          # exportar o ip da outra máquina
+            seq: 2
           # começar os serviços das câmeras
           
   ext-cpd:
@@ -60,9 +47,9 @@ vnfd:
   mgmt-cp: vnf-cp0-ext
   product-name: non_static_5g_mobility-vnf
   sw-image-desc:
-  - id: ubuntu16.04
-    image: ubuntu16.04
-    name: ubuntu16.04
+  - id: computer_vision
+    image: computer_vision
+    name: computer_vision
   vdu:
   - cloud-init-file: cloud-config.txt
     id: non_static_5g_mobility-VM
@@ -73,7 +60,7 @@ vnfd:
         virtual-interface:
           type: PARAVIRT
     name: non_static_5g_mobility-VM
-    sw-image-desc: ubuntu16.04
+    sw-image-desc: computer_vision
     virtual-compute-desc: non_static_5g_mobility-VM-compute
     virtual-storage-desc:
     - non_static_5g_mobility-VM-storage
