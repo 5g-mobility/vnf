@@ -1,8 +1,8 @@
 nsd:
   nsd:
-  - description: Non Static NS with a single VNF and VL for 5G Mobility
+  - description: NS with a single VNF and VL for 5G Mobility
     df:
-    - id: non-static-5g-mobility-df
+    - id: build-cv-image-df
       vnf-profile:
       - id: '1'
         virtual-link-connectivity:
@@ -10,13 +10,13 @@ nsd:
           - constituent-base-element-id: '1'
             constituent-cpd-id: vnf-cp0-ext
           virtual-link-profile-id: mgmtnet
-        vnfd-id: non_static_5g_mobility-vnf
-    id: non_static_5g_mobility-ns
-    name: non_static_5g_mobility-ns
+        vnfd-id: build-cv-image-vnf
+    id: build-cv-image-ns
+    name: build-cv-image-ns
     version: '1.0'
     virtual-link-desc:
     - id: mgmtnet
       mgmt-network: true
       vim-network-name: proj_net
     vnfd-id:
-    - non_static_5g_mobility-vnf
+    - build-cv-image-vnf
