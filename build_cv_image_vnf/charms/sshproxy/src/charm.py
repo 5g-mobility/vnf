@@ -142,8 +142,8 @@ class SshproxyCharm(SSHProxyCharm):
 
             # install osm client
             proxy.run("sudo sed -i \"/osm-download.etsi.org/d\" /etc/apt/sources.list")
-            proxy.run("wget -qO - https://osm-download.etsi.org/repository/osm/debian/ReleaseNINE/OSM%20ETSI%20Release%20Key.gpg | sudo apt-key add -")
-            proxy.run("sudo add-apt-repository -y \"deb [arch=amd64] https://osm-download.etsi.org/repository/osm/debian/ReleaseEIGHT-daily testing osmclient\"")
+            proxy.run("wget -qO - 'https://osm-download.etsi.org/repository/osm/debian/ReleaseNINE/OSM%20ETSI%20Release%20Key.gpg' | sudo apt-key add -")
+            proxy.run("sudo echo \"deb [arch=amd64] https://osm-download.etsi.org/repository/osm/debian/ReleaseEIGHT-daily testing osmclient\" | sudo tee -a /etc/apt/sources.list")
             proxy.run("sudo apt-get update")
             proxy.run("sudo apt-get -y install python3-pip")
             proxy.run("sudo -H python3 -m pip install python-magic pyangbind verboselogs")
