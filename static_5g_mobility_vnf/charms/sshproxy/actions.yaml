@@ -75,6 +75,8 @@ sed-replace:
     - replace-string
     - file-path
 
+update-time:
+  description: "Synchronize the time of the VM with the time of ntp UA"
 
 clone-github-repository:
   description: "Clone a specific github repository to the VNF."

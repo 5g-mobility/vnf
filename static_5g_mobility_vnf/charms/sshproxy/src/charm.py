@@ -45,6 +45,7 @@ class SshproxyCharm(SSHProxyCharm):
         # Personalized actions
         self.framework.observe(self.on.export_ip_action, self.on_export_ip_action)
         self.framework.observe(self.on.sed_replace_action, self.on_sed_replace_action)
+        self.framework.observe(self.on.update_time_action, self.on_update_time_action)
         self.framework.observe(self.on.clone_github_repository_action,
                                         self.on_clone_github_repository_action)
         self.framework.observe(
@@ -234,6 +235,28 @@ class SshproxyCharm(SSHProxyCharm):
             ))
 
             self.unit.status = ActiveStatus("File modified with success")
+        else:
+            event.fail("Unit is not leader")
+            return
+
+    def on_update_time_action(self, event):
+        """ Synchronize the time of the VM with the time o ntp UA server """
+        if self.unit.is_leader():
+            proxy = self.get_ssh_proxy()
+
+            self.unit.status = MaintenanceStatus("Synchronizing")
+
+            proxy.run("sudo apt install -y ntp")
+            proxy.run("sudo service ntp stop")
+            proxy.run("sudo rm /etc/ntp.conf")
+            
+            proxy.run("sudo cp {}django_app/ntp.conf /etc/".format(self.github_dir))
+
+            proxy.run("sudo timedatectl set-timezone Europe/Lisbon")
+            proxy.run("sudo timedatectl set-ntp true")
+            proxy.run("sudo service ntp restart")
+
+            self.unit.status = ActiveStatus("Time was synchronized")
         else:
             event.fail("Unit is not leader")
             return

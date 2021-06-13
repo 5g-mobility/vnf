@@ -90,6 +90,9 @@ vnfd:
               name: file-path
               value: "angular_app/src/environments/environment.prod.ts"
             seq: 7
+          - name: update-time
+            execution-environment-ref: sshproxy-ee
+            seq: 8
           # - name: run-app
           #   execution-environment-ref: sshproxy-ee
           #   parameter:
