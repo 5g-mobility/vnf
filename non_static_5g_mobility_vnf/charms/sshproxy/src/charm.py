@@ -44,6 +44,7 @@ class SshproxyCharm(SSHProxyCharm):
 
         # Personalized actions ip-static-vm
         self.framework.observe(self.on.ip_static_vm_action, self.on_ip_static_vm_action)
+        self.framework.observe(self.on.update_time_action, self.on_update_time_action)
         self.framework.observe(self.on.clone_github_repository_action,
                                         self.on_clone_github_repository_action)
         self.framework.observe(
@@ -213,6 +214,20 @@ class SshproxyCharm(SSHProxyCharm):
             proxy.run("python3 {}cv_app/ip_static_vm.py")
 
             self.unit.status = ActiveStatus("The ip address was exported successfully")
+        else:
+            event.fail("Unit is not leader")
+            return
+
+    def on_update_time_action(self, event):
+        """ Synchronize the time of the VM with the time o ntp UA server """
+        if self.unit.is_leader():
+            proxy = self.get_ssh_proxy()
+
+            self.unit.status = MaintenanceStatus("Synchronizing")
+
+            proxy.run("cp {}cv_app/ntp.conf")
+
+            self.unit.status = ActiveStatus("Time was synchronized")
         else:
             event.fail("Unit is not leader")
             return

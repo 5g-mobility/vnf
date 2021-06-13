@@ -1,19 +1,19 @@
 vnfd:
-  description: Vnfd used to build the computer vision image w/ one VDU
+  description: Non Static VNF descriptor w/ one VDU
   df:
-  - id: default-df
+  - id: non-static-5g-mobility-df
     instantiation-level:
-    - id: build_cv_image-instantiation-level
+    - id: non_static_5g_mobility-instantiation-level
       vdu-level:
       - number-of-instances: 1
-        vdu-id: build_cv_image_vm
+        vdu-id: non_static_5g_mobility-VM
     vdu-profile:
-    - id: build_cv_image_vm
+    - id: non_static_5g_mobility-VM
       min-number-of-instances: 1
     lcm-operations-configuration:
       operate-vnf-op-config:
         day1-2:
-        - id: build_cv_image_vm
+        - id: non_static_5g_mobility-VM
           execution-environment-list:
           - id: sshproxy-ee
             juju:
@@ -52,36 +52,35 @@ vnfd:
   - id: vnf-cp0-ext
     int-cpd:
       cpd: vdu-eth0-int
-      vdu-id: build_cv_image_vm
-  id: build_cv_image-vnf
+      vdu-id: non_static_5g_mobility-VM
+  id: non_static_5g_mobility-vnf
   mgmt-cp: vnf-cp0-ext
-  product-name: build_cv_image-vnf
+  product-name: non_static_5g_mobility-vnf
   sw-image-desc:
   - id: ubuntu16.04
     image: ubuntu16.04
     name: ubuntu16.04
   vdu:
   - cloud-init-file: cloud-config.txt
-    id: build_cv_image_vm
+    id: non_static_5g_mobility-VM
     int-cpd:
     - id: vdu-eth0-int
       virtual-network-interface-requirement:
       - name: vdu-eth0
         virtual-interface:
           type: PARAVIRT
-    name: build_cv_image_vm
+    name: non_static_5g_mobility-VM
     sw-image-desc: ubuntu16.04
-    virtual-compute-desc: build_cv_image_vm-compute
+    virtual-compute-desc: non_static_5g_mobility-VM-compute
     virtual-storage-desc:
-    - build_cv_image_vm-storage
+    - non_static_5g_mobility-VM-storage
   version: '1.0'
   virtual-compute-desc:
-  - id: build_cv_image_vm-compute
+  - id: non_static_5g_mobility-VM-compute
     virtual-cpu:
-    # TODO change this NEED MORE POWER
-      num-virtual-cpu: "4"
+      num-virtual-cpu: "1"
     virtual-memory:
       size: "4.0"
   virtual-storage-desc:
-  - id: build_cv_image_vm-storage
-    size-of-storage: "10"
+  - id: non_static_5g_mobility-VM-storage
+    size-of-storage: "5"
