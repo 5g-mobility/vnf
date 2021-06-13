@@ -133,12 +133,19 @@ class SshproxyCharm(SSHProxyCharm):
             # add directory where the github repository code will be placed
             proxy.run("mkdir {}".format(self.github_dir))
 
+            self.unit.status = MaintenanceStatus("Installing osm client")
+
+            # prep python pip
+            proxy.run("sudo apt-get -y install python3-pip")
+            proxy.run("echo \"export LC_ALL=C.UTF-8\" >> ~/.bashrc")
+            proxy.run("echo \"export LANG=C.UTF-8\" >> ~/.bashrc")
+            proxy.run(". ~/.bashrc")
+
             # install osm client
             proxy.run("sudo sed -i \"/osm-download.etsi.org/d\" /etc/apt/sources.list")
             proxy.run("wget -qO - https://osm-download.etsi.org/repository/osm/debian/ReleaseNINE/OSM%20ETSI%20Release%20Key.gpg | sudo apt-key add -")
             proxy.run("sudo add-apt-repository -y \"deb [arch=amd64] https://osm-download.etsi.org/repository/osm/debian/ReleaseEIGHT-daily testing osmclient\"")
             proxy.run("sudo apt-get update")
-            proxy.run("sudo apt-get install -y python3-pip")
             proxy.run("sudo -H python3 -m pip install python-magic pyangbind verboselogs")
             proxy.run("sudo apt-get install -y python3-osmclient")
             
