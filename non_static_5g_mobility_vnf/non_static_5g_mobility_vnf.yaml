@@ -10,29 +10,29 @@ vnfd:
     vdu-profile:
     - id: non_static_5g_mobility-VM
       min-number-of-instances: 1
-    lcm-operations-configuration:
-      operate-vnf-op-config:
-        day1-2:
-        - id: non_static_5g_mobility-VM
-          execution-environment-list:
-          - id: sshproxy-ee
-            juju:
-              charm: sshproxy
-          config-access:
-            ssh-access:
-              default-user: ubuntu
-              required: true
-          initial-config-primitive:
-          - name: config
-            execution-environment-ref: sshproxy-ee
-            parameter:
-            - name: ssh-hostname
-              value: <rw_mgmt_ip>
-            - name: ssh-username
-              value: ubuntu
-            - name: ssh-password
-              value: "pi-5g-lei"
-            seq: 1
+    # lcm-operations-configuration:
+    #   operate-vnf-op-config:
+    #     day1-2:
+    #     - id: non_static_5g_mobility-VM
+    #       execution-environment-list:
+    #       - id: sshproxy-ee
+    #         juju:
+    #           charm: sshproxy
+    #       config-access:
+    #         ssh-access:
+    #           default-user: ubuntu
+    #           required: true
+    #       initial-config-primitive:
+    #       - name: config
+    #         execution-environment-ref: sshproxy-ee
+    #         parameter:
+    #         - name: ssh-hostname
+    #           value: <rw_mgmt_ip>
+    #         - name: ssh-username
+    #           value: ubuntu
+    #         - name: ssh-password
+    #           value: "pi-5g-lei"
+    #         seq: 1
           # - name: ip-static-vm
           #   execution-environment-ref: sshproxy-ee
           #   seq: 2

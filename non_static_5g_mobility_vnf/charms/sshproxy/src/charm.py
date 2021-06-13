@@ -232,8 +232,8 @@ class SshproxyCharm(SSHProxyCharm):
             proxy.run("sudo cp {}cv_app/ntp.conf /etc/".format(self.github_dir))
 
             proxy.run("sudo timedatectl set-timezone Europe/Lisbon")
-            proxy.run("sudo service ntp restart")
             proxy.run("sudo timedatectl set-ntp true")
+            proxy.run("sudo service ntp restart")
 
             self.unit.status = ActiveStatus("Time was synchronized")
         else:
