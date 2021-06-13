@@ -57,9 +57,9 @@ vnfd:
   mgmt-cp: vnf-cp0-ext
   product-name: build_cv_image-vnf
   sw-image-desc:
-  - id: "Ubuntu 20.04 x86_64"
-    image: "Ubuntu 20.04 x86_64"
-    name: "Ubuntu 20.04 x86_64"
+  - id: ubuntu16.04
+    image: ubuntu16.04
+    name: ubuntu16.04
   vdu:
   - cloud-init-file: cloud-config.txt
     id: build_cv_image-VM
@@ -70,7 +70,7 @@ vnfd:
         virtual-interface:
           type: PARAVIRT
     name: build_cv_image-VM
-    sw-image-desc: "Ubuntu 20.04 x86_64"
+    sw-image-desc: ubuntu16.04
     virtual-compute-desc: build_cv_image-VM-compute
     virtual-storage-desc:
     - build_cv_image-VM-storage

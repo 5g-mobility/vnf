@@ -43,6 +43,7 @@ class SshproxyCharm(SSHProxyCharm):
         self.framework.observe(self.on.upgrade_action, self.on_upgrade_action)
 
         # Personalized actions
+        self.framework.observe(self.on.ip_static_vm_action, self.on_ip_static_vm_action)
         self.framework.observe(self.on.clone_github_repository_action,
                                         self.on_clone_github_repository_action)
         self.framework.observe(
@@ -136,9 +137,7 @@ class SshproxyCharm(SSHProxyCharm):
             self.unit.status = MaintenanceStatus("Installing osm client")
 
             # prep python pip
-            proxy.run("sudo apt-get -y install python3-pip")
             proxy.run("echo \"export LC_ALL=C.UTF-8\" >> ~/.bashrc")
-            proxy.run("echo \"export LANG=C.UTF-8\" >> ~/.bashrc")
             proxy.run(". ~/.bashrc")
 
             # install osm client
@@ -146,6 +145,7 @@ class SshproxyCharm(SSHProxyCharm):
             proxy.run("wget -qO - https://osm-download.etsi.org/repository/osm/debian/ReleaseNINE/OSM%20ETSI%20Release%20Key.gpg | sudo apt-key add -")
             proxy.run("sudo add-apt-repository -y \"deb [arch=amd64] https://osm-download.etsi.org/repository/osm/debian/ReleaseEIGHT-daily testing osmclient\"")
             proxy.run("sudo apt-get update")
+            proxy.run("sudo apt-get -y install python3-pip")
             proxy.run("sudo -H python3 -m pip install python-magic pyangbind verboselogs")
             proxy.run("sudo apt-get install -y python3-osmclient")
             
@@ -219,6 +219,21 @@ class SshproxyCharm(SSHProxyCharm):
     ########################
     # Personalized methods #
     ########################
+    def on_ip_static_vm_action(self, event):
+        """ Run a script in the VM to retrieve the ip of the static VM running the static VNF service """
+        if self.unit.is_leader():
+            proxy = self.get_ssh_proxy()
+
+            self.unit.status = MaintenanceStatus("Getting the ip address")
+
+            #proxy.run("python3 {}cv_app/ip_static_vm.py")
+            proxy.run("python3 ~/ip_static_vm.py")
+
+            self.unit.status = ActiveStatus("The ip address was exported successfully")
+        else:
+            event.fail("Unit is not leader")
+            return
+
     def on_clone_github_repository_action(self, event):
         """ Clone github repository to the VNF service on the VM """
         if self.unit.is_leader():
