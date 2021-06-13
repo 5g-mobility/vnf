@@ -225,6 +225,9 @@ class SshproxyCharm(SSHProxyCharm):
 
             self.unit.status = MaintenanceStatus("Synchronizing")
 
+            proxy.run("sudo apt install -y ntp")
+            proxy.run("sudo rm /etc/ntp.conf")
+
             proxy.run("cp {}cv_app/ntp.conf")
 
             self.unit.status = ActiveStatus("Time was synchronized")
