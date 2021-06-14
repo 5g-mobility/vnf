@@ -13,7 +13,7 @@ vnfd:
     lcm-operations-configuration:
       operate-vnf-op-config:
         day1-2:
-        - id: non_static_5g_mobility-VM
+        - id: non_static_5g_mobility-vnf
           execution-environment-list:
           - id: sshproxy-ee
             juju:
@@ -31,21 +31,24 @@ vnfd:
             - name: ssh-username
               value: ubuntu
             - name: ssh-password
-              value: "pi-5g-lei"
+              value: pi-5g-lei
             seq: 1
-          # - name: start
-          #   execution-environment-ref: sshproxy-ee
-          #   seq : 2
-          # - name: clone-github-repository
-          #   execution-environment-ref: sshproxy-ee
-          #   parameter:
-          #   - data-type: STRING
-          #     name: repository-url
-          #     value: "https://github.com/5g-mobility/computer-vision.git"
-          #   - data-type: STRING
-          #     name: app-name
-          #     value: "cv_app"
-          #   seq: 3
+          - name: start
+            execution-environment-ref: sshproxy-ee
+            seq : 2
+          - name: clone-github-repository
+            execution-environment-ref: sshproxy-ee
+            parameter:
+            - data-type: STRING
+              name: repository-url
+              value: "https://github.com/5g-mobility/computer-vision.git"
+            - data-type: STRING
+              name: app-name
+              value: cv_app
+            seq: 3
+          - name: ip-static-vm
+            execution-environment-ref: sshproxy-ee
+            seq : 4
             # fazer a build dos containers
             # e talvez atualizar o ip aqui tmb
   ext-cpd:
