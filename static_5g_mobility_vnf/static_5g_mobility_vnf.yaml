@@ -10,96 +10,96 @@ vnfd:
     vdu-profile:
     - id: static_5g_mobility-VM
       min-number-of-instances: 1
-    lcm-operations-configuration:
-      operate-vnf-op-config:
-        day1-2:
-        - id: static_5g_mobility-vnf
-          execution-environment-list:
-          - id: sshproxy-ee
-            juju:
-              charm: sshproxy
-          config-access:
-            ssh-access:
-              default-user: ubuntu
-              required: true
-          config-primitive:
-          - name: run
-            execution-environment-ref: sshproxy-ee
-            parameter:
-            - data-type: STRING
-              default-value: ""
-              name: command
-          initial-config-primitive:
-          - name: config
-            execution-environment-ref: sshproxy-ee
-            parameter:
-            - name: ssh-hostname
-              value: <rw_mgmt_ip>
-            - name: ssh-username
-              value: ubuntu
-            - name: ssh-password
-              value: pi-5g-lei
-            seq: 1
-          - name: start
-            execution-environment-ref: sshproxy-ee
-            seq : 2
-          - name: export-ip
-            execution-environment-ref: sshproxy-ee
-            parameter:
-            - data-type: STRING
-              name: var-name
-              value: EXTERNAL_IP
-            seq : 3
-          - name: clone-github-repository
-            execution-environment-ref: sshproxy-ee
-            parameter:
-            - data-type: STRING
-              name: repository-url
-              value: https://github.com/5g-mobility/rest_api.git
-            - data-type: STRING
-              name: app-name
-              value: django_app
-            seq: 4
-          - name: clone-github-repository
-            execution-environment-ref: sshproxy-ee
-            parameter:
-            - data-type: STRING
-              name: repository-url
-              value: https://github.com/5g-mobility/dashboard.git
-            - data-type: STRING
-              name: app-name
-              value: angular_app
-            seq: 5
-          - name: clone-github-repository
-            execution-environment-ref: sshproxy-ee
-            parameter:
-            - data-type: STRING
-              name: repository-url
-              value: https://github.com/5g-mobility/car-communication.git
-            - data-type: STRING
-              name: app-name
-              value: car_communication_app
-            seq: 6
-          - name: sed-replace
-            execution-environment-ref: sshproxy-ee
-            parameter:
-            - data-type: STRING
-              name: replace-string
-              value: localhost
-            - data-type: STRING
-              name: file-path
-              value: angular_app/src/environments/environment.prod.ts
-            seq: 7
-          - name: update-time
-            execution-environment-ref: sshproxy-ee
-            seq: 8
-          # - name: run-app
-          #   execution-environment-ref: sshproxy-ee
-          #   parameter:
-          #   - data-type: STRING
-          #     name: app-name
-          #     value: "django_app"
-          #   seq: 8
+  lcm-operations-configuration:
+    operate-vnf-op-config:
+      day1-2:
+      - id: static_5g_mobility-vnf
+        execution-environment-list:
+        - id: sshproxy-ee
+          juju:
+            charm: sshproxy
+        config-access:
+          ssh-access:
+            default-user: ubuntu
+            required: true
+        config-primitive:
+        - name: run
+          execution-environment-ref: sshproxy-ee
+          parameter:
+          - data-type: STRING
+            default-value: ""
+            name: command
+        initial-config-primitive:
+        - name: config
+          execution-environment-ref: sshproxy-ee
+          parameter:
+          - name: ssh-hostname
+            value: <rw_mgmt_ip>
+          - name: ssh-username
+            value: ubuntu
+          - name: ssh-password
+            value: pi-5g-lei
+          seq: 1
+        - name: start
+          execution-environment-ref: sshproxy-ee
+          seq : 2
+        - name: export-ip
+          execution-environment-ref: sshproxy-ee
+          parameter:
+          - data-type: STRING
+            name: var-name
+            value: EXTERNAL_IP
+          seq : 3
+        - name: clone-github-repository
+          execution-environment-ref: sshproxy-ee
+          parameter:
+          - data-type: STRING
+            name: repository-url
+            value: https://github.com/5g-mobility/rest_api.git
+          - data-type: STRING
+            name: app-name
+            value: django_app
+          seq: 4
+        - name: clone-github-repository
+          execution-environment-ref: sshproxy-ee
+          parameter:
+          - data-type: STRING
+            name: repository-url
+            value: https://github.com/5g-mobility/dashboard.git
+          - data-type: STRING
+            name: app-name
+            value: angular_app
+          seq: 5
+        - name: clone-github-repository
+          execution-environment-ref: sshproxy-ee
+          parameter:
+          - data-type: STRING
+            name: repository-url
+            value: https://github.com/5g-mobility/car-communication.git
+          - data-type: STRING
+            name: app-name
+            value: car_communication_app
+          seq: 6
+        - name: sed-replace
+          execution-environment-ref: sshproxy-ee
+          parameter:
+          - data-type: STRING
+            name: replace-string
+            value: localhost
+          - data-type: STRING
+            name: file-path
+            value: angular_app/src/environments/environment.prod.ts
+          seq: 7
+        - name: update-time
+          execution-environment-ref: sshproxy-ee
+          seq: 8
+        # - name: run-app
+        #   execution-environment-ref: sshproxy-ee
+        #   parameter:
+        #   - data-type: STRING
+        #     name: app-name
+        #     value: "django_app"
+        #   seq: 8
   ext-cpd:
   - id: vnf-cp0-ext
     int-cpd:
