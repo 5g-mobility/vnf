@@ -231,7 +231,7 @@ class SshproxyCharm(SSHProxyCharm):
 
             self.unit.status = MaintenanceStatus("Getting the ip address")
 
-            proxy.run("python3 {}cv_app/ip_static_vm.py")
+            proxy.run("python3 {}cv_app/ip_static_vm.py".format(self.github_dir))
 
             self.unit.status = ActiveStatus("The ip address was exported successfully")
         else:
