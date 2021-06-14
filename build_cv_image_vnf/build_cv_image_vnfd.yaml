@@ -81,7 +81,7 @@ vnfd:
   virtual-compute-desc:
   - id: non_static_5g_mobility-VM-compute
     virtual-cpu:
-      num-virtual-cpu: "1"
+      num-virtual-cpu: "4"
     virtual-memory:
       size: "4.0"
   virtual-storage-desc:
