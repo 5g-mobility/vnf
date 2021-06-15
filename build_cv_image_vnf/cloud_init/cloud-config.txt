@@ -1,4 +1,4 @@
 #cloud-config
-password: password
+password: pi-5g-lei
 chpasswd: { expire: False }
 ssh_pwauth: True

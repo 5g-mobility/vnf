@@ -10,32 +10,34 @@ vnfd:
     vdu-profile:
     - id: non_static_5g_mobility-VM
       min-number-of-instances: 1
-    # lcm-operations-configuration:
-    #   operate-vnf-op-config:
-    #     day1-2:
-    #     - id: non_static_5g_mobility-VM
-    #       execution-environment-list:
-    #       - id: sshproxy-ee
-    #         juju:
-    #           charm: sshproxy
-    #       config-access:
-    #         ssh-access:
-    #           default-user: ubuntu
-    #           required: true
-    #       initial-config-primitive:
-    #       - name: config
-    #         execution-environment-ref: sshproxy-ee
-    #         parameter:
-    #         - name: ssh-hostname
-    #           value: <rw_mgmt_ip>
-    #         - name: ssh-username
-    #           value: ubuntu
-    #         - name: ssh-password
-    #           value: "pi-5g-lei"
-    #         seq: 1
-          # - name: ip-static-vm
-          #   execution-environment-ref: sshproxy-ee
-          #   seq: 2
+    lcm-operations-configuration:
+      operate-vnf-op-config:
+        day1-2:
+        - id: non_static_5g_mobility-vnf
+          execution-environment-list:
+          - id: sshproxy-ee
+            juju:
+              charm: sshproxy
+          config-access:
+            ssh-access:
+              default-user: ubuntu
+              required: true
+          initial-config-primitive:
+          - name: config
+            execution-environment-ref: sshproxy-ee
+            parameter:
+            - name: ssh-hostname
+              value: <rw_mgmt_ip>
+            - name: ssh-username
+              value: ubuntu
+            - name: ssh-password
+              value: pi-5g-lei
+              seq: 1
+          - name: update-time
+            execution-environment-ref: sshproxy-ee
+            seq: 2
+
+          # ip route
           # começar os serviços das câmeras
           
   ext-cpd:
@@ -68,10 +70,9 @@ vnfd:
   virtual-compute-desc:
   - id: non_static_5g_mobility-VM-compute
     virtual-cpu:
-    # TODO change this NEED MORE POWER
       num-virtual-cpu: "4"
     virtual-memory:
-      size: "4.0"
+      size: "8.0"
   virtual-storage-desc:
   - id: non_static_5g_mobility-VM-storage
-    size-of-storage: "10"
+    size-of-storage: "60"

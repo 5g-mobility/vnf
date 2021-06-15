@@ -225,6 +225,8 @@ class SshproxyCharm(SSHProxyCharm):
 
             self.unit.status = MaintenanceStatus("Synchronizing")
 
+            proxy.run("sudo ip route add 10.0.19.0/24 via 192.168.94.100 dev ens3")
+
             proxy.run("sudo apt install -y ntp")
             proxy.run("sudo service ntp stop")
             proxy.run("sudo rm /etc/ntp.conf")

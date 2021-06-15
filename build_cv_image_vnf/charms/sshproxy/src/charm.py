@@ -307,7 +307,7 @@ class SshproxyCharm(SSHProxyCharm):
             proxy = self.get_ssh_proxy()
             self.unit.status = MaintenanceStatus("Building application {}".format(app_name))
 
-            proxy.run( "export RABBITMQ_IP=`python3 {}cv_app/ip_static_vm.py`".format(self.github_dir) +
+            proxy.run( "export RABBITMQ_IP=$(python3 {}cv_app/ip_static_vm.py)".format(self.github_dir) +
                 " && docker-compose -f {}{}/docker-compose.yml build".format(self.github_dir, app_name))
 
             self.unit.status = ActiveStatus("{} builded successfully".format(app_name))
