@@ -315,6 +315,7 @@ class SshproxyCharm(SSHProxyCharm):
             proxy = self.get_ssh_proxy()
             self.unit.status = MaintenanceStatus("Building and running application {}".format(app_name))
 
+            proxy.run("docker-compose -f {}{}/docker-compose.yml build".format(self.github_dir, app_name))
             proxy.run("docker-compose -f {}{}/docker-compose.yml up -d".format(self.github_dir, app_name))
 
             self.unit.status = ActiveStatus("{} running successfully".format(app_name))

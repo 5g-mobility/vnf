@@ -93,13 +93,27 @@ vnfd:
           - name: update-time
             execution-environment-ref: sshproxy-ee
             seq: 8
-          # - name: run-app
-          #   execution-environment-ref: sshproxy-ee
-          #   parameter:
-          #   - data-type: STRING
-          #     name: app-name
-          #     value: "django_app"
-          #   seq: 8
+          - name: run-app
+            execution-environment-ref: sshproxy-ee
+            parameter:
+            - data-type: STRING
+              name: app-name
+              value: django_app
+            seq: 9
+          - name: run-app
+            execution-environment-ref: sshproxy-ee
+            parameter:
+            - data-type: STRING
+              name: app-name
+              value: angular_app
+            seq: 10
+          - name: run-app
+            execution-environment-ref: sshproxy-ee
+            parameter:
+            - data-type: STRING
+              name: app-name
+              value: car_communication_app
+            seq: 11
   ext-cpd:
   - id: vnf-cp0-ext
     int-cpd:
@@ -127,13 +141,12 @@ vnfd:
     virtual-storage-desc:
     - static_5g_mobility-VM-storage
   version: '1.0'
-  # TODO change this specifications
   virtual-compute-desc:
   - id: static_5g_mobility-VM-compute
     virtual-cpu:
       num-virtual-cpu: "4"
     virtual-memory:
-      size: "4.0"
+      size: "6.0"
   virtual-storage-desc:
   - id: static_5g_mobility-VM-storage
-    size-of-storage: "10"
+    size-of-storage: "20"

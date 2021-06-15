@@ -50,7 +50,6 @@ vnfd:
             execution-environment-ref: sshproxy-ee
             seq : 4
             # fazer a build dos containers
-            # e talvez atualizar o ip aqui tmb
   ext-cpd:
   - id: vnf-cp0-ext
     int-cpd:
