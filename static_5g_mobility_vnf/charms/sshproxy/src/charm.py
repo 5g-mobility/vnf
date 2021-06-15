@@ -315,7 +315,7 @@ class SshproxyCharm(SSHProxyCharm):
             proxy = self.get_ssh_proxy()
             self.unit.status = MaintenanceStatus("Building and running application {}".format(app_name))
 
-            proxy.run("export EXTERNAL_IP={}".format(self.model.config["ssh-hostname"])) +
+            proxy.run("export EXTERNAL_IP={}".format(self.model.config["ssh-hostname"]) +
                 " && docker-compose -f {}{}/docker-compose.yml build".format(self.github_dir, app_name) + 
                 " && docker-compose -f {}{}/docker-compose.yml up -d".format(self.github_dir, app_name)
             )
