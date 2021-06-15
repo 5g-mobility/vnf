@@ -90,40 +90,30 @@ vnfd:
               name: file-path
               value: angular_app/src/environments/environment.prod.ts
             seq: 7
-          - name: sed-replace
-            execution-environment-ref: sshproxy-ee
-            parameter:
-            - data-type: STRING
-              name: replace-string
-              value: ${EXTERNAL_IP}
-            - data-type: STRING
-              name: file-path
-              value: django_app/docker-compose.yml
-            seq: 8
           - name: update-time
             execution-environment-ref: sshproxy-ee
-            seq: 9
+            seq: 8
           - name: run-app
             execution-environment-ref: sshproxy-ee
             parameter:
             - data-type: STRING
               name: app-name
               value: django_app
-            seq: 10
+            seq: 9
           - name: run-app
             execution-environment-ref: sshproxy-ee
             parameter:
             - data-type: STRING
               name: app-name
               value: angular_app
-            seq: 11
+            seq: 10
           - name: run-app
             execution-environment-ref: sshproxy-ee
             parameter:
             - data-type: STRING
               name: app-name
               value: car_communication_app
-            seq: 12
+            seq: 11
   ext-cpd:
   - id: vnf-cp0-ext
     int-cpd:
