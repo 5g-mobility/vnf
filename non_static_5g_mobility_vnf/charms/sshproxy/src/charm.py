@@ -225,7 +225,7 @@ class SshproxyCharm(SSHProxyCharm):
 
             self.unit.status = MaintenanceStatus("Synchronizing")
 
-            proxy.run("sudo ip route add 10.0.19.0/24 via 192.168.94.100 dev ens3")
+            #proxy.run("sudo ip route add 10.0.19.0/24 via 192.168.94.100 dev ens3")
 
             proxy.run("sudo apt install -y ntp")
             proxy.run("sudo service ntp stop")
@@ -298,7 +298,7 @@ class SshproxyCharm(SSHProxyCharm):
 
             proxy.run("sudo service ntp restart")
             proxy.run( "export RABBITMQ_IP=$(python3 {}cv_app/ip_static_vm.py)".format(self.github_dir) +
-                " && docker-compose -f {}{}/docker-compose.yml up -d".format(self.github_dir, app_name))
+                " && sudo docker-compose -f {}{}/docker-compose.yml up -d".format(self.github_dir, app_name))
 
             self.unit.status = ActiveStatus("{} running successfully".format(app_name))
         else:
