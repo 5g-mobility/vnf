@@ -41,7 +41,7 @@ vnfd:
             parameter:
             - data-type: STRING
               name: repository-url
-              value: "https://github.com/5g-mobility/computer-vision.git"
+              value: https://github.com/5g-mobility/computer-vision.git
             - data-type: STRING
               name: app-name
               value: cv_app
@@ -49,7 +49,13 @@ vnfd:
           - name: ip-static-vm
             execution-environment-ref: sshproxy-ee
             seq : 4
-            # fazer a build dos containers
+          - name: build-app
+            execution-environment-ref: sshproxy-ee
+            parameter:
+            - data-type: STRING
+              name: app-name
+              value: cv_app
+            seq: 5
   ext-cpd:
   - id: vnf-cp0-ext
     int-cpd:
@@ -85,4 +91,4 @@ vnfd:
       size: "4.0"
   virtual-storage-desc:
   - id: non_static_5g_mobility-VM-storage
-    size-of-storage: "5"
+    size-of-storage: "10"
