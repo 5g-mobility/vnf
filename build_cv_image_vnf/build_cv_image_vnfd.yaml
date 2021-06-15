@@ -31,7 +31,7 @@ vnfd:
             - name: ssh-username
               value: ubuntu
             - name: ssh-password
-              value: pi-5g-lei
+              value: password
             seq: 1
           - name: start
             execution-environment-ref: sshproxy-ee
