@@ -32,7 +32,7 @@ vnfd:
               value: ubuntu
             - name: ssh-password
               value: pi-5g-lei
-              seq: 1
+            seq: 1
           - name: update-time
             execution-environment-ref: sshproxy-ee
             seq: 2
