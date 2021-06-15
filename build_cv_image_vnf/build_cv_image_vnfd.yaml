@@ -46,16 +46,13 @@ vnfd:
               name: app-name
               value: cv_app
             seq: 3
-          - name: ip-static-vm
-            execution-environment-ref: sshproxy-ee
-            seq : 4
           - name: build-app
             execution-environment-ref: sshproxy-ee
             parameter:
             - data-type: STRING
               name: app-name
               value: cv_app
-            seq: 5
+            seq: 4
   ext-cpd:
   - id: vnf-cp0-ext
     int-cpd:
