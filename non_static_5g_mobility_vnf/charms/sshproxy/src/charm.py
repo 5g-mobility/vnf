@@ -296,9 +296,12 @@ class SshproxyCharm(SSHProxyCharm):
             proxy = self.get_ssh_proxy()
             self.unit.status = MaintenanceStatus("Building and running application {}".format(app_name))
 
+            proxy.run("sudo chown root:ubuntu /var/run/docker.sock")
+            proxy.run("sudo chown -R root:ubuntu /var/run/docker")
+            
             proxy.run("sudo service ntp restart")
             proxy.run( "export RABBITMQ_IP=$(python3 {}cv_app/ip_static_vm.py)".format(self.github_dir) +
-                " && sudo docker-compose -f {}{}/docker-compose.yml up -d".format(self.github_dir, app_name))
+                " && docker-compose -f {}{}/docker-compose.yml up -d".format(self.github_dir, app_name))
 
             self.unit.status = ActiveStatus("{} running successfully".format(app_name))
         else:
