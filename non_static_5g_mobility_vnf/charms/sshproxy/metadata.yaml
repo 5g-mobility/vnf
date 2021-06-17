@@ -1,0 +1,23 @@
+# Copyright 2020 David Garcia
+# See LICENSE file for licensing details.
+name: sshproxy
+description: |
+  SSHProxy Charm used to configure VNFs with github repositories and docker
+summary: |
+  This charm should be used as a base for any Proxy Charm (SSH based) when using github repositories and docker
+series:
+  - focal
+  - bionic
+  - xenial
+# - kubernetes
+# deployment:
+#    mode: operator
+peers:
+  proxypeer:
+    interface: proxypeer
+tags:
+  - osm
+  - proxycharm
+  - ssh
+  - git
+  - docker
