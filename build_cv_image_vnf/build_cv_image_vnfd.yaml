@@ -88,4 +88,4 @@ vnfd:
       size: "4.0"
   virtual-storage-desc:
   - id: non_static_5g_mobility-VM-storage
-    size-of-storage: "30"
+    size-of-storage: "60"
