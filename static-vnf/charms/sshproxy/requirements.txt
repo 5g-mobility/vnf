@@ -1,2 +1,0 @@
-ops
-git+https://github.com/charmed-osm/charms.osm#egg=charms.osm
