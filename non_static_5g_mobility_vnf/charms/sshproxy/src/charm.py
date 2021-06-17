@@ -227,6 +227,8 @@ class SshproxyCharm(SSHProxyCharm):
 
             #proxy.run("sudo ip route add 10.0.19.0/24 via 192.168.94.100 dev ens3")
 
+            proxy.run("while ! ping -c 1 -W 1 0.0.0.0; do echo \"waiting\"; sleep 1; done")
+
             proxy.run("sudo apt install -y ntp")
             proxy.run("sudo service ntp stop")
             proxy.run("sudo rm /etc/ntp.conf")
