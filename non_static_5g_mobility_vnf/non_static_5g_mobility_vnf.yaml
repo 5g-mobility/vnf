@@ -10,6 +10,39 @@ vnfd:
     vdu-profile:
     - id: non_static_5g_mobility-VM
       min-number-of-instances: 1
+    lcm-operations-configuration:
+      operate-vnf-op-config:
+        day1-2:
+        - id: non_static_5g_mobility-vnf
+          execution-environment-list:
+          - id: sshproxy-ee
+            juju:
+              charm: sshproxy
+          config-access:
+            ssh-access:
+              default-user: ubuntu
+              required: true
+          initial-config-primitive:
+          - name: config
+            execution-environment-ref: sshproxy-ee
+            parameter:
+            - name: ssh-hostname
+              value: <rw_mgmt_ip>
+            - name: ssh-username
+              value: ubuntu
+            - name: ssh-password
+              value: pi-5g-lei
+            seq: 1
+          - name: update-time
+            execution-environment-ref: sshproxy-ee
+            seq: 2
+          - name: run-app
+            execution-environment-ref: sshproxy-ee
+            parameter:
+            - data-type: STRING
+              name: app-name
+              value: cv_app
+            seq: 3          
   ext-cpd:
   - id: vnf-cp0-ext
     int-cpd:
@@ -19,9 +52,9 @@ vnfd:
   mgmt-cp: vnf-cp0-ext
   product-name: non_static_5g_mobility-vnf
   sw-image-desc:
-  - id: ubuntu16.04
-    image: ubuntu16.04
-    name: ubuntu16.04
+  - id: computer_vision
+    image: computer_vision
+    name: computer_vision
   vdu:
   - cloud-init-file: cloud-config.txt
     id: non_static_5g_mobility-VM
@@ -32,7 +65,7 @@ vnfd:
         virtual-interface:
           type: PARAVIRT
     name: non_static_5g_mobility-VM
-    sw-image-desc: ubuntu16.04
+    sw-image-desc: computer_vision
     virtual-compute-desc: non_static_5g_mobility-VM-compute
     virtual-storage-desc:
     - non_static_5g_mobility-VM-storage
@@ -40,9 +73,9 @@ vnfd:
   virtual-compute-desc:
   - id: non_static_5g_mobility-VM-compute
     virtual-cpu:
-      num-virtual-cpu: "4"
+      num-virtual-cpu: "6"
     virtual-memory:
       size: "8.0"
   virtual-storage-desc:
   - id: non_static_5g_mobility-VM-storage
-    size-of-storage: "10"
+    size-of-storage: "60"

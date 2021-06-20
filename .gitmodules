@@ -1,0 +1,6 @@
+[submodule "vnf-charm/charms/sshproxy/mod/operator"]
+	path = vnf-charm/charms/sshproxy/mod/operator
+	url = https://github.com/canonical/operator
+[submodule "vnf-charm/charms/sshproxy/mod/charms.osm"]
+	path = vnf-charm/charms/sshproxy/mod/charms.osm
+	url = https://github.com/charmed-osm/charms.osm
