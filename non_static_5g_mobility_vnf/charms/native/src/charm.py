@@ -73,8 +73,7 @@ class NativeCharm(CharmBase):
         try:
             self.unit.status = MaintenanceStatus("Synchronizing")
 
-            subprocess.run(["while", "!", "ping", "-c", "1",
-             "-W", "1", "0.0.0.0;", "do", "echo", "\"waiting\";", "sleep", "1;", "done"], check=True)
+            subprocess.run("while ! ping -c 1 -W 1 0.0.0.0; do echo \"waiting\"; sleep 1; done", shell=True, check=True)
 
             subprocess.run(["sudo", "apt", "install", "-y", "ntp"], check=True)
             subprocess.run(["sudo", "service", "ntp", "stop"], check=True)
