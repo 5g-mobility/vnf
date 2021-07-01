@@ -1,0 +1,19 @@
+# Copyright 2020 David Garcia
+# See LICENSE file for licensing details.
+name: native
+description: |
+  Native Charm used to configure VNFs with github repositories and docker
+summary: |
+  This charm should be used as a base for any Native Charm when using github repositories and docker
+series:
+  - focal
+  - bionic
+  - xenial
+# - kubernetes
+# deployment:
+#    mode: operator
+tags:
+  - osm
+  - nativecharm
+  - git
+  - docker

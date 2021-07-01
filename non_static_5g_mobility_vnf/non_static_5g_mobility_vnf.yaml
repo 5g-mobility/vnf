@@ -13,36 +13,27 @@ vnfd:
     lcm-operations-configuration:
       operate-vnf-op-config:
         day1-2:
-        - id: non_static_5g_mobility-vnf
-          execution-environment-list:
-          - id: sshproxy-ee
-            juju:
-              charm: sshproxy
-          config-access:
+        - config-access:
             ssh-access:
               default-user: ubuntu
               required: true
+          id: non_static_5g_mobility-VM
+          execution-environment-list:
+          - id: native-ee
+            juju:
+              charm: native
+              proxy: false
           initial-config-primitive:
-          - name: config
-            execution-environment-ref: sshproxy-ee
-            parameter:
-            - name: ssh-hostname
-              value: <rw_mgmt_ip>
-            - name: ssh-username
-              value: ubuntu
-            - name: ssh-password
-              value: pi-5g-lei
-            seq: 1
           - name: update-time
-            execution-environment-ref: sshproxy-ee
-            seq: 2
+            execution-environment-ref: native-ee
+            seq: 1
           - name: run-app
-            execution-environment-ref: sshproxy-ee
+            execution-environment-ref: native-ee
             parameter:
             - data-type: STRING
               name: app-name
               value: cv_app
-            seq: 3          
+            seq: 2
   ext-cpd:
   - id: vnf-cp0-ext
     int-cpd:
